@@ -107,7 +107,14 @@ export default class Router<HT> {
     let handler: HT | undefined;
     let wildcard: TrieNode<HT>;
     let wildcardIndex: number = 0;
+    if(path === ""){
+      
+      handler = current.getHandler(method)
+      if(handler){
+        return {handler, params:{}}
 
+      }
+    }
     parts.forEach((part, index) => {
       // A way to fasttrack out of the loop, forEach does not have a break feature
       if (brk) return;
